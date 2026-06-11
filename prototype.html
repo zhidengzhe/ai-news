@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾光者 · AI 每日资讯</title>
+<style>
+  :root {
+    --bg: #0d0b0b;
+    --text: #e0dcd5;
+    --muted: #706b65;
+    --accent: #ff8a5f;
+    --border: #252220;
+    --row-hover: #151313;
+    --th-bg: #121010;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d0b0b;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255,138,95,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(255,138,95,0.04) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(255,255,255,0.015) 0%, transparent 70%);
+    color: var(--text);
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+  header {
+    padding: 56px 32px 32px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  header h1 {
+    font-size: 2.2rem; font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    color: var(--accent);
+    letter-spacing: 6px;
+  }
+  header p { color: var(--muted); font-size: 0.78rem; margin-top: 6px; }
+  .filters {
+    padding: 18px 32px;
+    display: flex; gap: 12px; flex-wrap: wrap;
+  }
+  .filters select, .filters input {
+    background: #0d0b0b; color: var(--text);
+    border: none; padding: 5px 10px;
+    font-family: inherit; font-size: 0.78rem;
+  }
+  .filters select:focus, .filters input:focus {
+    outline: none; border-color: var(--accent);
+  }
+  .table-wrap { padding: 24px 32px; overflow-x: auto; }
+  table {
+    width: 100%; border-collapse: collapse;
+    min-width: 1100px;
+  }
+  thead th {
+    background: var(--th-bg); color: var(--accent);
+    text-align: left; padding: 10px 12px;
+    font-weight: 400; font-size: 0.76rem;
+    border-bottom: 2px solid var(--accent);
+    white-space: nowrap;
+    position: sticky; top: 0; z-index: 1;
+  }
+  tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tbody tr:hover td { background: var(--row-hover); }
+  .date { color: var(--accent); white-space: nowrap; font-size: 0.78rem; }
+  .field { color: #b8a07a; font-size: 0.76rem; white-space: nowrap; }
+  .company { color: #7ab8a0; font-size: 0.76rem; }
+  .person { color: #a07ab8; font-size: 0.76rem; }
+  .content { max-width: 320px; }
+  .impact {
+    color: var(--accent); max-width: 340px;
+    font-size: 0.78rem; line-height: 1.55;
+  }
+  .source { color: var(--muted); font-size: 0.74rem; white-space: nowrap; font-style: italic; }
+  .none { color: var(--muted); font-size: 0.72rem; }
+  .date-group td {
+    background: var(--th-bg);
+    color: var(--accent);
+    font-size: 0.8rem;
+    padding: 12px 12px 6px;
+    border-bottom: 1px solid var(--accent);
+  }
+  footer {
+    text-align: center; color: var(--muted); font-size: 0.72rem;
+    padding: 40px 32px; border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>AI 改变未来</h1>
+</header>
+
+<div class="filters">
+  <input type="text" list="dates" placeholder="日期">
+  <datalist id="dates">
+    <option value="2026-06-11">
+    <option value="2026-06-10">
+  </datalist>
+  <select>
+    <option>全部领域</option>
+    <option>大模型</option><option>Agent</option><option>芯片</option>
+    <option>多模态</option><option>具身智能</option>
+  </select>
+  <select>
+    <option>全部公司</option>
+    <option>OpenAI</option><option>NVIDIA</option><option>DeepSeek</option>
+  </select>
+  <input type="text" placeholder="搜索关键词">
+</div>
+
+<div class="table-wrap">
+<table>
+<thead>
+  <tr>
+    <th>日期</th><th>领域</th><th>公司</th><th>人物</th>
+    <th>内容</th><th>影响和意义</th><th>来源</th>
+  </tr>
+</thead>
+<tbody>
+
+  <tr class="date-group">
+    <td colspan="7">2026-06-11 · 3条</td>
+  </tr>
+  <tr>
+    <td class="date">06-11</td>
+    <td class="field">大模型</td>
+    <td class="company">OpenAI</td>
+    <td class="person">Sam Altman</td>
+    <td class="content">OpenAI 秘密提交 IPO 申请，估值或超千亿美元。</td>
+    <td class="impact">AI 从 VC 输血转向公开市场定价，行业估值锚点将重置。</td>
+    <td class="source">TechCrunch</td>
+  </tr>
+  <tr>
+    <td class="date">06-11</td>
+    <td class="field">Agent</td>
+    <td class="none"></td>
+    <td class="none"></td>
+    <td class="content">BAGEN 揭示前沿 LLM Agent 浪费 44% token 且无法感知预算边界。</td>
+    <td class="impact">挑战"Agent=更多调用=更好"的默认假设，引导预算感知设计。</td>
+    <td class="source">arXiv</td>
+  </tr>
+  <tr>
+    <td class="date">06-11</td>
+    <td class="field">芯片</td>
+    <td class="company">NVIDIA</td>
+    <td class="person">黄仁勋</td>
+    <td class="content">黄仁勋 Computex 发布 6 款新芯片 + Nemotron 3 Ultra(550B)。</td>
+    <td class="impact">推理侧布局加速，芯片+模型双线推进将重塑开源生态。</td>
+    <td class="source">NVIDIA</td>
+  </tr>
+
+  <tr class="date-group">
+    <td colspan="7">2026-06-10 · 5条</td>
+  </tr>
+  <tr>
+    <td class="date">06-10</td>
+    <td class="field">大模型</td>
+    <td class="company">智谱AI</td>
+    <td class="none"></td>
+    <td class="content">智谱AI发布 GLM-4.7，SWE-bench Verified 开源第一（73.8%）。</td>
+    <td class="impact">国产模型在编程能力上首次全面对标国际闭源模型。</td>
+    <td class="source">智谱AI</td>
+  </tr>
+  <tr>
+    <td class="date">06-10</td>
+    <td class="field">具身智能</td>
+    <td class="company">优必选</td>
+    <td class="none"></td>
+    <td class="content">优必选人形机器人 2025 营收增长 2203.7%，登顶全球第一。</td>
+    <td class="impact">中国具身智能商业化从实验室走向规模化，数据反哺将加速迭代。</td>
+    <td class="source">机器之心</td>
+  </tr>
+  <tr>
+    <td class="date">06-10</td>
+    <td class="field">Agent</td>
+    <td class="company">Meta</td>
+    <td class="person">Zuckerberg</td>
+    <td class="content">Meta 数十亿美元收购 Manus，切断中国资本关系。</td>
+    <td class="impact">中美 AI 脱钩从芯片层蔓延至应用层，Agent 人才成为新战场。</td>
+    <td class="source">钛媒体</td>
+  </tr>
+  <tr>
+    <td class="date">06-10</td>
+    <td class="field">多模态</td>
+    <td class="none"></td>
+    <td class="none"></td>
+    <td class="content">ARM 提出 7B 统一自回归多模态大模型，同时实现理解和生成。</td>
+    <td class="impact">小参数统一模型路径验证，边缘设备多模态推理成为可能。</td>
+    <td class="source">arXiv</td>
+  </tr>
+  <tr>
+    <td class="date">06-10</td>
+    <td class="field">自动驾驶</td>
+    <td class="company">Waymo</td>
+    <td class="none"></td>
+    <td class="content">Waymo 里程突破 1.7 亿英里，安全记录优于人类驾驶员。</td>
+    <td class="impact">规模化验证数据将成为 L4 监管审批的关键筹码。</td>
+    <td class="source">Waymo</td>
+  </tr>
+
+</tbody>
+</table>
+</div>
+
+<footer>拾光者 · 数据来自每日 AI 早报自动归档</footer>
+</body>
+</html>
