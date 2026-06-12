@@ -64,7 +64,8 @@
     border-bottom: 2px solid var(--accent);
     white-space: nowrap;
   }
-  thead { position: sticky; top: 56px; z-index: 2; background: var(--th-bg); }
+  .fixed { position: fixed; top: 56px; z-index: 10; }
+  .fixed-placeholder { visibility: hidden; }
   tbody td {
     padding: 10px 12px;
     border-bottom: 1px solid var(--border);
@@ -339,6 +340,34 @@ document.getElementById('filter-keyword').addEventListener('input', filterData);
 
 // 初次渲染
 renderTable(newsData);
+
+// 表头 sticky（JS 方案）
+(function(){
+  const thead = document.querySelector('thead');
+  const topBar = document.querySelector('.top-bar');
+  if (!thead || !topBar) return;
+  const tr = thead.querySelector('tr');
+  const offset = topBar.offsetHeight + 8;
+  let fixed = false, placeholder = null;
+
+  function check() {
+    const rect = thead.getBoundingClientRect();
+    if (rect.top <= offset && !fixed) {
+      fixed = true;
+      placeholder = tr.cloneNode(true);
+      placeholder.classList.add('fixed-placeholder');
+      thead.insertBefore(placeholder, tr);
+      tr.classList.add('fixed');
+      tr.style.width = thead.offsetWidth + 'px';
+    } else if (rect.top > offset && fixed) {
+      fixed = false;
+      if (placeholder) placeholder.remove();
+      tr.classList.remove('fixed');
+      tr.style.width = '';
+    }
+  }
+  window.addEventListener('scroll', check, {passive: true});
+})();
 </script>
 </body>
 </html>
