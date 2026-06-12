@@ -349,33 +349,37 @@ renderTable(newsData);
   if (!thead || !topBar) return;
   const tr = thead.querySelector('tr');
   const offset = topBar.offsetHeight + 8;
-  let fixed = false, placeholder = null;
+  let fixed = false, placeholder = null, fixTriggerY = 0;
 
   function check() {
-    const rect = thead.getBoundingClientRect();
-    if (rect.top <= offset && !fixed) {
-      fixed = true;
-      const origThs = Array.from(thead.querySelectorAll('th'));
-      const widths = origThs.map(th => th.offsetWidth);
-      placeholder = tr.cloneNode(true);
-      placeholder.classList.add('fixed-placeholder');
-      thead.insertBefore(placeholder, tr);
-      tr.classList.add('fixed');
-      tr.style.top = offset + 'px';
-      // 推开正文，避免被 fixed 表头覆盖
-      const tw = document.querySelector('.table-wrap');
-      if (tw) tw.style.paddingTop = (tr.offsetHeight + 8) + 'px';
-      const ths = tr.querySelectorAll('th');
-      ths.forEach((th, i) => { th.style.width = widths[i] + 'px'; });
-      tr.style.minWidth = thead.offsetWidth + 'px';
-    } else if (rect.top > offset && fixed) {
-      fixed = false;
-      if (placeholder) placeholder.remove();
-      tr.classList.remove('fixed');
-      tr.style.top = '';
-      tr.style.width = '';
-      const tw = document.querySelector('.table-wrap');
-      if (tw) tw.style.paddingTop = '';
+    if (!fixed) {
+      const rect = thead.getBoundingClientRect();
+      if (rect.top <= offset) {
+        fixed = true;
+        fixTriggerY = window.scrollY;
+        const origThs = Array.from(thead.querySelectorAll('th'));
+        const widths = origThs.map(th => th.offsetWidth);
+        placeholder = tr.cloneNode(true);
+        placeholder.classList.add('fixed-placeholder');
+        thead.insertBefore(placeholder, tr);
+        tr.classList.add('fixed');
+        tr.style.top = offset + 'px';
+        const tw = document.querySelector('.table-wrap');
+        if (tw) tw.style.paddingTop = (tr.offsetHeight + 8) + 'px';
+        const ths = tr.querySelectorAll('th');
+        ths.forEach((th, i) => { th.style.width = widths[i] + 'px'; });
+        tr.style.minWidth = thead.offsetWidth + 'px';
+      }
+    } else {
+      if (window.scrollY < fixTriggerY) {
+        fixed = false;
+        if (placeholder) placeholder.remove();
+        tr.classList.remove('fixed');
+        tr.style.top = '';
+        tr.style.width = '';
+        const tw = document.querySelector('.table-wrap');
+        if (tw) tw.style.paddingTop = '';
+      }
     }
   }
   setInterval(check, 150);
