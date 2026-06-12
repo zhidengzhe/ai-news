@@ -29,7 +29,6 @@
     line-height: 1.6;
   }
   .top-bar {
-    position: sticky; top: 0; z-index: 10;
     background: var(--bg);
     border-bottom: 1px solid var(--border);
     padding: 10px 20px 8px;
@@ -53,10 +52,40 @@
     outline: none; border-bottom: 1px solid var(--accent);
   }
   .table-wrap { padding: 8px 20px; overflow-x: auto; }
+  #sticky-head {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg);
+  }
+  #head-table {
+    width: 100%; border-collapse: collapse;
+    min-width: 1100px; table-layout: fixed;
+  }
+  #head-table th {
+    background: var(--th-bg); color: var(--accent);
+    text-align: center; padding: 10px 12px;
+    font-weight: 400; font-size: 0.76rem;
+    border-bottom: 2px solid var(--accent);
+    white-space: nowrap;
+  }
+  #head-table th:nth-child(1) { width: 70px; }
+  #head-table th:nth-child(2) { width: 80px; }
+  #head-table th:nth-child(3) { width: 100px; }
+  #head-table th:nth-child(4) { width: 90px; }
+  #head-table th:nth-child(5) { width: auto; }
+  #head-table th:nth-child(6) { width: auto; }
+  #head-table th:nth-child(7) { width: 120px; }
   table {
     width: 100%; border-collapse: collapse;
-    min-width: 1100px;
+    min-width: 1100px; table-layout: fixed;
   }
+  /* 数据表列宽，与 #head-table 一致 */
+  .table-wrap td:nth-child(1) { width: 70px; }
+  .table-wrap td:nth-child(2) { width: 80px; }
+  .table-wrap td:nth-child(3) { width: 100px; }
+  .table-wrap td:nth-child(4) { width: 90px; }
+  .table-wrap td:nth-child(5) { width: auto; }
+  .table-wrap td:nth-child(6) { width: auto; }
+  .table-wrap td:nth-child(7) { width: 120px; }
   thead th {
     background: var(--th-bg); color: var(--accent);
     text-align: center; padding: 10px 12px;
@@ -123,6 +152,7 @@
 </head>
 <body>
 
+<div id="sticky-head">
 <div class="top-bar">
   <h1>AI 改变未来</h1>
   <div class="filters">
@@ -146,15 +176,18 @@
     <input type="text" id="filter-keyword" placeholder="搜索关键词">
   </div>
 </div>
-
-<div class="table-wrap">
-<table>
+<table id="head-table">
 <thead>
   <tr>
     <th>日期</th><th>领域</th><th>公司</th><th>人物</th>
     <th>内容</th><th>影响和意义</th><th>来源</th>
   </tr>
 </thead>
+</table>
+</div>
+
+<div class="table-wrap">
+<table>
 <tbody id="news-body"></tbody>
 </table>
 </div>
