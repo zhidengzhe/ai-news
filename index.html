@@ -64,7 +64,8 @@
     border-bottom: 2px solid var(--accent);
     white-space: nowrap;
   }
-  .fixed { position: fixed; top: 56px; z-index: 10; }
+  .fixed { position: fixed; top: 56px; z-index: 10; background: var(--th-bg); }
+  .fixed th { background: var(--th-bg); }
   .fixed-placeholder { visibility: hidden; }
   tbody td {
     padding: 10px 12px;
@@ -354,11 +355,17 @@ renderTable(newsData);
     const rect = thead.getBoundingClientRect();
     if (rect.top <= offset && !fixed) {
       fixed = true;
+      const ths = tr.querySelectorAll('th');
+      const origThs = thead.querySelectorAll('th');
       placeholder = tr.cloneNode(true);
       placeholder.classList.add('fixed-placeholder');
       thead.insertBefore(placeholder, tr);
       tr.classList.add('fixed');
-      tr.style.width = thead.offsetWidth + 'px';
+      // 同步列宽
+      const widths = [];
+      origThs.forEach(th => widths.push(th.offsetWidth));
+      ths.forEach((th, i) => { th.style.width = widths[i] + 'px'; });
+      tr.style.minWidth = thead.offsetWidth + 'px';
     } else if (rect.top > offset && fixed) {
       fixed = false;
       if (placeholder) placeholder.remove();
