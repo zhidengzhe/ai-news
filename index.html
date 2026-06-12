@@ -370,8 +370,9 @@ renderTable(newsData);
       tr.classList.remove('fixed');
       tr.style.width = '';
     }
+    requestAnimationFrame(check);
   }
-  window.addEventListener('scroll', check, {passive: true});
+  requestAnimationFrame(check);
 })();
 </script>
 </body>
