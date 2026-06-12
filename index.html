@@ -92,6 +92,31 @@
     text-align: center; color: var(--muted); font-size: 0.72rem;
     padding: 40px 32px; border-top: 1px solid var(--border);
   }
+
+  /* ===== 移动端 ===== */
+  .cards-wrap { display: none; }
+  @media (max-width: 768px) {
+    .table-wrap { display: none; }
+    .cards-wrap { display: block; padding: 0 12px 24px; }
+    header { padding: 32px 16px 20px; }
+    header h1 { font-size: 1.3rem; letter-spacing: 3px; }
+    .filters { flex-direction: column; padding: 12px 16px; }
+    .filters select, .filters input { font-size: 14px; padding: 10px 12px; }
+    .date-group-card { color: var(--accent); font-size: 13px; padding: 20px 0 8px; border-bottom: 1px solid var(--accent); margin-bottom: 8px; }
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 14px; margin-bottom: 10px;
+    }
+    .card .meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; font-size: 12px; }
+    .card .meta .c-date { color: var(--accent); }
+    .card .meta .c-field { color: #b8a07a; }
+    .card .meta .c-company { color: #7ab8a0; }
+    .card .meta .c-person { color: #a07ab8; }
+    .card .c-content { margin-bottom: 8px; line-height: 1.55; font-size: 14px; }
+    .card .c-impact { color: var(--accent); font-size: 13px; margin-bottom: 6px; line-height: 1.5; }
+    .card .c-source { color: var(--muted); font-size: 11px; font-style: italic; }
+    footer { font-size: 0.68rem; padding: 24px 16px; }
+  }
 </style>
 </head>
 <body>
@@ -132,6 +157,8 @@
 <tbody id="news-body"></tbody>
 </table>
 </div>
+
+<div class="cards-wrap" id="cards-wrap"></div>
 
 <footer>拾光者 · 数据来自每日 AI 早报自动归档</footer>
 
@@ -193,6 +220,38 @@ function renderTable(data) {
   tbody.innerHTML = '';
   if (data.length === 0) {
     tbody.innerHTML = '<tr class="empty-msg"><td colspan="7">暂无数据，等待首次早报推送</td></tr>';
+  } else {
+    const grouped = {};
+    data.forEach(item => {
+      if (!grouped[item.date]) grouped[item.date] = [];
+      grouped[item.date].push(item);
+    });
+    const dates = Object.keys(grouped).sort().reverse();
+    dates.forEach(date => {
+      const count = grouped[date].length;
+      tbody.innerHTML += `<tr class="date-group"><td colspan="7">${date} · ${count}条</td></tr>`;
+      grouped[date].forEach(item => {
+        tbody.innerHTML += `
+        <tr>
+          <td class="date">${date.slice(5)}</td>
+          <td class="field">${item.field}</td>
+          <td class="company">${item.company || ''}</td>
+          <td class="person">${item.person || ''}</td>
+          <td class="content">${item.content}</td>
+          <td class="impact">${item.impact}</td>
+          <td class="source">${item.source}</td>
+        </tr>`;
+      });
+    });
+  }
+  renderCards(data);
+}
+
+function renderCards(data) {
+  const wrap = document.getElementById('cards-wrap');
+  wrap.innerHTML = '';
+  if (data.length === 0) {
+    wrap.innerHTML = '<div style="text-align:center;padding:48px;color:var(--muted)">暂无数据，等待首次早报推送</div>';
     return;
   }
   const grouped = {};
@@ -203,18 +262,20 @@ function renderTable(data) {
   const dates = Object.keys(grouped).sort().reverse();
   dates.forEach(date => {
     const count = grouped[date].length;
-    tbody.innerHTML += `<tr class="date-group"><td colspan="7">${date} · ${count}条</td></tr>`;
+    wrap.innerHTML += `<div class="date-group-card">${date} · ${count}条</div>`;
     grouped[date].forEach(item => {
-      tbody.innerHTML += `
-        <tr>
-          <td class="date">${date.slice(5)}</td>
-          <td class="field">${item.field}</td>
-          <td class="company">${item.company || ''}</td>
-          <td class="person">${item.person || ''}</td>
-          <td class="content">${item.content}</td>
-          <td class="impact">${item.impact}</td>
-          <td class="source">${item.source}</td>
-        </tr>`;
+      wrap.innerHTML += `
+        <div class="card">
+          <div class="meta">
+            <span class="c-date">${date.slice(5)}</span>
+            <span class="c-field">${item.field}</span>
+            ${item.company ? `<span class="c-company">${item.company}</span>` : ''}
+            ${item.person ? `<span class="c-person">${item.person}</span>` : ''}
+          </div>
+          <div class="c-content">${item.content}</div>
+          <div class="c-impact">${item.impact}</div>
+          <div class="c-source">${item.source}</div>
+        </div>`;
     });
   });
 }
