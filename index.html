@@ -64,8 +64,15 @@
     border-bottom: 2px solid var(--accent);
     white-space: nowrap;
   }
-  .fixed { position: fixed; z-index: 10; background: var(--th-bg); }
-  .fixed th { background: var(--th-bg); }
+  .fixed { position: fixed; z-index: 10; }
+  .fixed table { border-collapse: collapse; }
+  .fixed th {
+    background: var(--th-bg); color: var(--accent);
+    text-align: center; padding: 10px 12px;
+    font-weight: 400; font-size: 0.76rem;
+    border-bottom: 2px solid var(--accent);
+    white-space: nowrap;
+  }
   .fixed-placeholder { visibility: hidden; }
   tbody td {
     padding: 10px 12px;
@@ -349,7 +356,7 @@ renderTable(newsData);
   if (!thead || !topBar) return;
   const tr = thead.querySelector('tr');
   const offset = topBar.offsetHeight + 8;
-  let fixed = false, placeholder = null, fixTriggerY = 0;
+  let fixed = false, placeholder = null, fixTriggerY = 0, fixedDiv = null;
 
   function check() {
     if (!fixed) {
@@ -357,24 +364,29 @@ renderTable(newsData);
       if (rect.top <= offset) {
         fixed = true;
         fixTriggerY = window.scrollY;
+        // 克隆表头到独立 fixed div
+        fixedDiv = document.createElement('div');
+        fixedDiv.className = 'fixed';
+        fixedDiv.style.top = offset + 'px';
+        fixedDiv.style.width = thead.offsetWidth + 'px';
+        fixedDiv.style.minWidth = '1100px';
         const origThs = Array.from(thead.querySelectorAll('th'));
         const widths = origThs.map(th => th.offsetWidth);
+        const headHTML = '<table><thead>' + tr.outerHTML + '</thead></table>';
+        fixedDiv.innerHTML = headHTML;
+        document.body.appendChild(fixedDiv);
+        // 同步列宽
+        fixedDiv.querySelectorAll('th').forEach((th, i) => { th.style.width = widths[i] + 'px'; });
+        // 占位符
         placeholder = tr.cloneNode(true);
         placeholder.classList.add('fixed-placeholder');
         thead.insertBefore(placeholder, tr);
-        tr.classList.add('fixed');
-        tr.style.top = offset + 'px';
-        const ths = tr.querySelectorAll('th');
-        ths.forEach((th, i) => { th.style.width = widths[i] + 'px'; });
-        tr.style.minWidth = thead.offsetWidth + 'px';
       }
     } else {
       if (window.scrollY < fixTriggerY) {
         fixed = false;
         if (placeholder) placeholder.remove();
-        tr.classList.remove('fixed');
-        tr.style.top = '';
-        tr.style.width = '';
+        if (fixedDiv) { fixedDiv.remove(); fixedDiv = null; }
       }
     }
   }
