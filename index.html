@@ -364,8 +364,6 @@ renderTable(newsData);
         thead.insertBefore(placeholder, tr);
         tr.classList.add('fixed');
         tr.style.top = offset + 'px';
-        const tw = document.querySelector('.table-wrap');
-        if (tw) tw.style.paddingTop = (tr.offsetHeight + 8) + 'px';
         const ths = tr.querySelectorAll('th');
         ths.forEach((th, i) => { th.style.width = widths[i] + 'px'; });
         tr.style.minWidth = thead.offsetWidth + 'px';
@@ -377,8 +375,6 @@ renderTable(newsData);
         tr.classList.remove('fixed');
         tr.style.top = '';
         tr.style.width = '';
-        const tw = document.querySelector('.table-wrap');
-        if (tw) tw.style.paddingTop = '';
       }
     }
   }
