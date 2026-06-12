@@ -355,15 +355,13 @@ renderTable(newsData);
     const rect = thead.getBoundingClientRect();
     if (rect.top <= offset && !fixed) {
       fixed = true;
-      const ths = tr.querySelectorAll('th');
-      const origThs = thead.querySelectorAll('th');
+      const origThs = Array.from(thead.querySelectorAll('th'));
+      const widths = origThs.map(th => th.offsetWidth);
       placeholder = tr.cloneNode(true);
       placeholder.classList.add('fixed-placeholder');
       thead.insertBefore(placeholder, tr);
       tr.classList.add('fixed');
-      // 同步列宽
-      const widths = [];
-      origThs.forEach(th => widths.push(th.offsetWidth));
+      const ths = tr.querySelectorAll('th');
       ths.forEach((th, i) => { th.style.width = widths[i] + 'px'; });
       tr.style.minWidth = thead.offsetWidth + 'px';
     } else if (rect.top > offset && fixed) {
