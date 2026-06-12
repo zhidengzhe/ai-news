@@ -28,27 +28,27 @@
     font-size: 0.82rem;
     line-height: 1.6;
   }
-  header {
-    padding: 56px 32px 32px;
+  .top-bar {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg);
     border-bottom: 1px solid var(--border);
-    text-align: center;
+    padding: 10px 20px 8px;
   }
-  header h1 {
-    font-size: 2.2rem; font-weight: 600;
-    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    color: var(--accent);
-    letter-spacing: 6px;
+  .top-bar h1 {
+    font-size: 1.4rem; font-weight: 400; color: var(--accent); letter-spacing: 6px;
+    font-family: 'SF Mono','Cascadia Code','Consolas',monospace;
+    text-align: center; margin-bottom: 12px;
+    text-shadow: 0 0 20px rgba(255,138,95,0.25);
   }
-  .filters {
-    padding: 18px 32px;
-    display: flex; gap: 12px; flex-wrap: wrap;
+  .top-bar .filters {
+    display: flex; gap: 8px; flex-wrap: wrap;
   }
-  .filters select, .filters input {
+  .top-bar .filters select, .top-bar .filters input {
     background: #0d0b0b; color: var(--text);
     border: none; padding: 5px 10px;
     font-family: inherit; font-size: 0.78rem;
   }
-  .filters select:focus, .filters input:focus {
+  .top-bar .filters select:focus, .top-bar .filters input:focus {
     outline: none; border-bottom: 1px solid var(--accent);
   }
   .table-wrap { padding: 24px 32px; overflow-x: auto; }
@@ -62,7 +62,7 @@
     font-weight: 400; font-size: 0.76rem;
     border-bottom: 2px solid var(--accent);
     white-space: nowrap;
-    position: sticky; top: 0; z-index: 1;
+    position: sticky; top: 52px; z-index: 1;
   }
   tbody td {
     padding: 10px 12px;
@@ -98,10 +98,10 @@
   @media (max-width: 768px) {
     .table-wrap { display: none; }
     .cards-wrap { display: block; padding: 0 12px 24px; }
-    header { padding: 32px 16px 20px; }
-    header h1 { font-size: 1.3rem; letter-spacing: 3px; }
-    .filters { flex-direction: column; padding: 12px 16px; }
-    .filters select, .filters input { font-size: 14px; padding: 10px 12px; }
+    .top-bar { padding: 10px 14px; }
+    .top-bar h1 { font-size: 1rem; }
+    .top-bar .filters { flex-direction: column; }
+    .top-bar .filters select, .top-bar .filters input { font-size: 14px; padding: 10px 12px; }
     .date-group-card { color: var(--accent); font-size: 13px; padding: 20px 0 8px; border-bottom: 1px solid var(--accent); margin-bottom: 8px; }
     .card {
       background: var(--card); border: 1px solid var(--border);
@@ -121,29 +121,28 @@
 </head>
 <body>
 
-<header>
+<div class="top-bar">
   <h1>AI 改变未来</h1>
-</header>
-
-<div class="filters">
-  <input type="text" list="dates" id="filter-date" placeholder="日期">
-  <datalist id="dates">
-    <option value="2026-06-11">
-    <option value="2026-06-10">
-  </datalist>
-  <select id="filter-field">
-    <option value="">全部领域</option>
-    <option>大模型</option><option>Agent</option><option>芯片</option>
-    <option>多模态</option><option>具身智能</option><option>自动驾驶</option>
-    <option>金融</option><option>教育</option><option>AI医疗</option>
-    <option>神经科学</option><option>农业</option><option>能源</option>
-    <option>法律</option><option>军事</option>
-  </select>
-  <select id="filter-company">
-    <option value="">全部公司</option>
-    <option>OpenAI</option><option>NVIDIA</option><option>DeepSeek</option>
-  </select>
-  <input type="text" id="filter-keyword" placeholder="搜索关键词">
+  <div class="filters">
+    <input type="text" list="dates" id="filter-date" placeholder="日期">
+    <datalist id="dates">
+      <option value="2026-06-11">
+      <option value="2026-06-10">
+    </datalist>
+    <select id="filter-field">
+      <option value="">全部领域</option>
+      <option>大模型</option><option>Agent</option><option>芯片</option>
+      <option>多模态</option><option>具身智能</option><option>自动驾驶</option>
+      <option>金融</option><option>教育</option><option>AI医疗</option>
+      <option>神经科学</option><option>农业</option><option>能源</option>
+      <option>法律</option><option>军事</option>
+    </select>
+    <select id="filter-company">
+      <option value="">全部公司</option>
+      <option>OpenAI</option><option>NVIDIA</option><option>DeepSeek</option>
+    </select>
+    <input type="text" id="filter-keyword" placeholder="搜索关键词">
+  </div>
 </div>
 
 <div class="table-wrap">
