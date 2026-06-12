@@ -64,12 +64,15 @@
     border-bottom: 2px solid var(--accent);
     white-space: nowrap;
     position: sticky; top: 56px; z-index: 2;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
   }
   tbody td {
     padding: 10px 12px;
     border-bottom: 1px solid var(--border);
     vertical-align: top;
+    text-align: center;
   }
+  tbody td.content, tbody td.impact { text-align: left; }
   tbody tr:hover td { background: var(--row-hover); }
   .date { color: var(--accent); white-space: nowrap; font-size: 0.78rem; }
   .field { color: #b8a07a; font-size: 0.76rem; white-space: nowrap; }
