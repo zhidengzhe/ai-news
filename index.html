@@ -412,12 +412,15 @@ renderTable(newsData);
         placeholder = tr.cloneNode(true);
         placeholder.classList.add('fixed-placeholder');
         thead.insertBefore(placeholder, tr);
+        // 隐藏原始表头，避免双表头
+        tr.style.visibility = 'hidden';
       }
     } else {
       if (window.scrollY < fixTriggerY) {
         fixed = false;
         if (placeholder) placeholder.remove();
         if (fixedDiv) { fixedDiv.remove(); fixedDiv = null; }
+        tr.style.visibility = '';
       }
     }
   }
