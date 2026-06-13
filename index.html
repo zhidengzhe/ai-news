@@ -45,8 +45,11 @@
   }
   .top-bar .filters select, .top-bar .filters input {
     background: #0d0b0b; color: var(--text);
-    border: none; padding: 5px 10px;
+    border: 1px solid var(--border); padding: 5px 10px;
     font-family: inherit; font-size: 0.78rem;
+  }
+  .top-bar .filters select option {
+    background: #0d0b0b; color: var(--text);
   }
   #filter-date { width: 145px; padding-left: 14px; }
   .top-bar .filters select:focus, .top-bar .filters input:focus {
