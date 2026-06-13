@@ -399,6 +399,7 @@ renderTable(newsData);
         fixedDiv = document.createElement('div');
         fixedDiv.className = 'fixed';
         fixedDiv.style.top = offset + 'px';
+        fixedDiv.style.left = rect.left + 'px';
         fixedDiv.style.width = thead.offsetWidth + 'px';
         fixedDiv.style.minWidth = '1100px';
         const origThs = Array.from(thead.querySelectorAll('th'));
