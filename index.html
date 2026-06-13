@@ -64,16 +64,9 @@
     border-bottom: 2px solid var(--accent);
     white-space: nowrap;
   }
-  .fixed { position: fixed; z-index: 10; background: var(--th-bg); }
-  .fixed table { border-collapse: collapse; width: 100%; }
-  .fixed th {
-    background: var(--th-bg); color: var(--accent);
-    text-align: center; padding: 10px 12px;
-    font-weight: 400; font-size: 0.76rem;
-    border-bottom: 2px solid var(--accent);
-    white-space: nowrap;
-  }
-  .fixed-placeholder { visibility: hidden; }
+  thead.pinned { position: fixed; top: 0; z-index: 10; }
+  thead.pinned th { background: var(--th-bg); }
+  .thead-spacer { visibility: hidden; }
   tbody td {
     padding: 10px 12px;
     border-bottom: 1px solid var(--border);
@@ -385,36 +378,33 @@ renderTable(newsData);
   if (!thead || !topBar) return;
   const tr = thead.querySelector('tr');
   const offset = topBar.offsetHeight + 8;
-  let fixed = false, placeholder = null, fixTriggerY = 0, fixedDiv = null;
+  let pinned = false, spacer = null, triggerY = 0;
 
   function check() {
-    if (!fixed) {
+    if (!pinned) {
       const rect = thead.getBoundingClientRect();
       if (rect.top <= offset) {
-        fixed = true;
-        fixTriggerY = window.scrollY;
-        // 克隆表头到独立 fixed div
-        fixedDiv = document.createElement('div');
-        fixedDiv.className = 'fixed';
-        fixedDiv.style.top = offset + 'px';
-        fixedDiv.style.width = thead.offsetWidth + 'px';
-        fixedDiv.style.minWidth = '1100px';
-        const headHTML = '<table><thead>' + tr.outerHTML + '</thead></table>';
-        fixedDiv.innerHTML = headHTML;
-        document.body.appendChild(fixedDiv);
-        // 隐藏原始表头行
-        tr.style.visibility = 'hidden';
-        // 占位符保持高度
-        placeholder = tr.cloneNode(true);
-        placeholder.classList.add('fixed-placeholder');
-        thead.insertBefore(placeholder, tr);
+        pinned = true;
+        triggerY = window.scrollY;
+        // spacer 维持表高度
+        spacer = tr.cloneNode(true);
+        spacer.classList.add('thead-spacer');
+        thead.insertBefore(spacer, tr);
+        // 固定原始 thead，补 table padding 防 tbody 上跳
+        thead.classList.add('pinned');
+        thead.style.top = offset + 'px';
+        thead.style.width = thead.parentElement.offsetWidth + 'px';
+        const table = thead.parentElement;
+        table.style.paddingTop = tr.offsetHeight + 'px';
       }
     } else {
-      if (window.scrollY < fixTriggerY) {
-        fixed = false;
-        if (placeholder) placeholder.remove();
-        if (fixedDiv) { fixedDiv.remove(); fixedDiv = null; }
-        tr.style.visibility = '';
+      if (window.scrollY < triggerY) {
+        pinned = false;
+        if (spacer) { spacer.remove(); spacer = null; }
+        thead.classList.remove('pinned');
+        thead.style.top = '';
+        thead.style.width = '';
+        thead.parentElement.style.paddingTop = '';
       }
     }
   }
