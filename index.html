@@ -399,7 +399,9 @@ renderTable(newsData);
 
 // 动态填充公司下拉
 (function(){
-  const companies = [...new Set(newsData.map(item => item.company).filter(Boolean))].sort();
+  const companies = [...new Set(newsData.map(item => item.company).filter(Boolean)
+    .flatMap(c => c.split('/').map(s => s.trim()))  // 拆分合并的公司名
+  )].sort();
   const sel = document.getElementById('filter-company');
   companies.forEach(c => {
     const opt = document.createElement('option');
