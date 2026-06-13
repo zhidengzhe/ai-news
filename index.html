@@ -399,14 +399,12 @@ renderTable(newsData);
         fixedDiv.style.top = offset + 'px';
         fixedDiv.style.width = thead.offsetWidth + 'px';
         fixedDiv.style.minWidth = '1100px';
-        const origThs = Array.from(thead.querySelectorAll('th'));
-        const widths = origThs.map(th => th.offsetWidth);
         const headHTML = '<table><thead>' + tr.outerHTML + '</thead></table>';
         fixedDiv.innerHTML = headHTML;
         document.body.appendChild(fixedDiv);
-        // 同步列宽
-        fixedDiv.querySelectorAll('th').forEach((th, i) => { th.style.width = widths[i] + 'px'; });
-        // 占位符
+        // 隐藏原始表头行
+        tr.style.visibility = 'hidden';
+        // 占位符保持高度
         placeholder = tr.cloneNode(true);
         placeholder.classList.add('fixed-placeholder');
         thead.insertBefore(placeholder, tr);
@@ -416,6 +414,7 @@ renderTable(newsData);
         fixed = false;
         if (placeholder) placeholder.remove();
         if (fixedDiv) { fixedDiv.remove(); fixedDiv = null; }
+        tr.style.visibility = '';
       }
     }
   }
