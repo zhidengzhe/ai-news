@@ -389,11 +389,13 @@ renderTable(newsData);
   });
 })();
 
-// 表头 sticky（JS 方案）
+// 表头 sticky（JS 方案·仅桌面端）
 (function(){
   const thead = document.querySelector('thead');
   const topBar = document.querySelector('.top-bar');
   if (!thead || !topBar) return;
+  // 手机端（table-wrap隐藏时）跳过
+  if (window.innerWidth <= 768) return;
   const tr = thead.querySelector('tr');
   const offset = topBar.offsetHeight;
   let fixed = false, placeholder = null, fixTriggerY = 0, fixedDiv = null;
