@@ -414,6 +414,8 @@ renderTable(newsData);
         thead.insertBefore(placeholder, tr);
         // 隐藏原始表头，避免双表头
         tr.style.visibility = 'hidden';
+        // 去掉橙线（visibility不隐藏border）
+        tr.querySelectorAll('th').forEach(th => { th.style.borderBottom = 'none'; });
       }
     } else {
       if (window.scrollY < fixTriggerY) {
@@ -421,6 +423,7 @@ renderTable(newsData);
         if (placeholder) placeholder.remove();
         if (fixedDiv) { fixedDiv.remove(); fixedDiv = null; }
         tr.style.visibility = '';
+        tr.querySelectorAll('th').forEach(th => { th.style.borderBottom = ''; });
       }
     }
   }
