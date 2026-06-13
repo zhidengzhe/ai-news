@@ -368,7 +368,9 @@ function filterData() {
   let filtered = newsData;
   if (dateVal) filtered = filtered.filter(item => item.date === dateVal);
   if (fieldVal) filtered = filtered.filter(item => item.field === fieldVal);
-  if (companyVal) filtered = filtered.filter(item => item.company === companyVal);
+  if (companyVal) filtered = filtered.filter(item =>
+    item.company && item.company.split('/').map(s => s.trim()).includes(companyVal)
+  );
   if (keyword) filtered = filtered.filter(item =>
     item.content.toLowerCase().includes(keyword) ||
     item.impact.toLowerCase().includes(keyword) ||
@@ -399,14 +401,22 @@ renderTable(newsData);
 
 // 动态填充公司下拉
 (function(){
-  const companies = [...new Set(newsData.map(item => item.company).filter(Boolean)
-    .flatMap(c => c.split('/').map(s => s.trim()))  // 拆分合并的公司名
-  )].sort();
+  const raw = new Set();
+  newsData.forEach(item => {
+    if (item.company) item.company.split('/').forEach(c => raw.add(c.trim()));
+  });
+  const companies = [...raw].filter(Boolean).sort();
   const sel = document.getElementById('filter-company');
   companies.forEach(c => {
     const opt = document.createElement('option');
     opt.value = c; opt.textContent = c;
     sel.appendChild(opt);
+  });
+  // 修正表格中公司名显示：/ → 、
+  document.querySelectorAll('td.company').forEach(td => {
+    if (td.textContent.includes('/')) {
+      td.textContent = td.textContent.split('/').map(s => s.trim()).join('、');
+    }
   });
 })();
 
