@@ -137,10 +137,7 @@
   <h1>AI 改变未来</h1>
   <div class="filters">
     <input type="text" list="dates" id="filter-date" placeholder="日期">
-    <datalist id="dates">
-      <option value="2026-06-11">
-      <option value="2026-06-10">
-    </datalist>
+    <datalist id="dates"></datalist>
     <select id="filter-field">
       <option value="">全部领域</option>
       <option>大模型</option><option>Agent</option><option>芯片</option>
@@ -379,6 +376,13 @@ document.getElementById('filter-keyword').addEventListener('input', filterData);
 
 // 初次渲染
 renderTable(newsData);
+
+// 动态填充日期下拉
+(function(){
+  const dates = [...new Set(newsData.map(item => item.date))].sort().reverse();
+  const datalist = document.getElementById('dates');
+  datalist.innerHTML = dates.map(d => `<option value="${d}">`).join('');
+})();
 
 // 表头 sticky（JS 方案）
 (function(){
