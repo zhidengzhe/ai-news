@@ -57,7 +57,14 @@
     background: var(--accent); color: #0d0b0b;
   }
   #filter-date { width: 145px; padding-left: 14px; }
-  .top-bar .filters select:focus, .top-bar .filters input:focus {
+  .top-bar .filters select:focus {
+    outline: none; border-bottom: 1px solid var(--accent);
+    background: var(--accent); color: #0d0b0b;
+  }
+  .top-bar .filters select:focus option {
+    background: #0d0b0b; color: var(--text);
+  }
+  .top-bar .filters input:focus {
     outline: none; border-bottom: 1px solid var(--accent);
   }
   .table-wrap { padding: 8px 20px; overflow-x: auto; }
