@@ -64,6 +64,16 @@
     border-bottom: 2px solid var(--accent);
     white-space: nowrap;
   }
+  .fixed { position: fixed; z-index: 10; background: var(--th-bg); }
+  .fixed table { border-collapse: collapse; width: 100%; }
+  .fixed th {
+    background: var(--th-bg); color: var(--accent);
+    text-align: center; padding: 10px 12px;
+    font-weight: 400; font-size: 0.76rem;
+    border-bottom: 2px solid var(--accent);
+    white-space: nowrap;
+  }
+  .fixed-placeholder { visibility: hidden; }
   tbody td {
     padding: 10px 12px;
     border-bottom: 1px solid var(--border);
@@ -165,35 +175,6 @@
 
 <script>
 const newsData = [
-  {"date": "2026-06-12", "field": "Agent", "company": "", "person": "", "content": "Agents-K1论文提出Agent原生知识编排框架，将论文全链路实体、声明、证据和机制纳入知识图谱", "impact": "推动科研Agent从浅层引用到深层知识理解的关键一步，有望改变文献综述和科研辅助方式", "source": "arXiv:2606.13669"},
-  {"date": "2026-06-12", "field": "Agent", "company": "", "person": "", "content": "EurekAgent提出Agent环境工程方法实现自主科学发现，让Agent自行提出、验证和迭代科学方案", "impact": "将科学发现的自动化从模型能力问题转化为环境设计问题，降低自主科研门槛", "source": "arXiv:2606.13662"},
-  {"date": "2026-06-12", "field": "Agent", "company": "小米", "person": "", "content": "小米开源MiMo Code编码Agent在超长200+步任务上击败Claude Code，持久记忆系统解决Agent开发痛点", "impact": "开源编码Agent的持续记忆能力突破，直接挑战Claude Code在复杂工程任务中的地位", "source": "VentureBeat"},
-  {"date": "2026-06-12", "field": "Agent", "company": "Microsoft", "person": "", "content": "微软开源SkillOpt自动升级AI Agent技能，用数学验证替代人工prompt调试", "impact": "Agent技能的自动化优化可能成为标配，减少人工维护成本并提升Agent可靠性", "source": "VentureBeat"},
-  {"date": "2026-06-12", "field": "Agent", "company": "", "person": "", "content": "GitHub新星guard-skills为编码Agent提供守卫技能，捕捉AI生成代码和测试中的失败模式", "impact": "Agent安全护栏从理论走向工程实践，AI辅助编程的安全审核自动化迈出重要一步", "source": "GitHub Trending"},
-  {"date": "2026-06-12", "field": "大模型", "company": "OpenAI", "person": "", "content": "GPT-5.5在Agents' Last Exam基准测试中意外击败Claude Fable 5，展示复杂多步指令遵循优势", "impact": "OpenAI在Agent评测维度重新确立领先地位，验证了更大模型在多步推理上的规模优势", "source": "VentureBeat"},
-  {"date": "2026-06-12", "field": "大模型", "company": "Google", "person": "", "content": "Google发布DiffusionGemma，实现256 token并行生成并具备自纠正能力，消费级GPU即可运行", "impact": "扩散模型在文本生成领域首次展示实用潜力，并行解码架构可能重塑推理效率范式", "source": "VentureBeat"},
-  {"date": "2026-06-12", "field": "大模型", "company": "", "person": "", "content": "研究人员声称仅花$1,500从头训练了一个1B推理模型，在关键基准上匹敌更大LLM", "impact": "极低成本训练高性能模型的可行性被验证，AI民主化进程可能加速", "source": "VentureBeat"},
-  {"date": "2026-06-12", "field": "大模型", "company": "Apple", "person": "", "content": "Apple新Siri AI定位为企业应用层，可在商业工作流中跨应用行动", "impact": "苹果从消费助手向企业AI agent转型，可能改变移动端企业软件格局", "source": "VentureBeat"},
-  {"date": "2026-06-12", "field": "大模型", "company": "", "person": "", "content": "新论文研究LLM通过检索增强强化微调实现类比推理，超越传统语义相似度检索", "impact": "检索增强生成从知识检索升级为推理检索，为复杂推理任务提供新范式", "source": "arXiv:2606.13670"},
-  {"date": "2026-06-12", "field": "多模态", "company": "", "person": "", "content": "InterleaveThinker实现Agent式交错图文生成，突破单图生成与编辑的架构限制", "impact": "图文交错生成能力的突破，使AI更接近人类的多模态思维和表达方式", "source": "arXiv cs.CV"},
-  {"date": "2026-06-12", "field": "多模态", "company": "", "person": "", "content": "Flex4DHuman通过多视角视频扩散从单目视频重建4D人体动态，仅需相对相机位姿", "impact": "4D人体重建大幅降低输入要求，推动虚拟人、影视制作和AR/VR应用落地", "source": "arXiv cs.CV"},
-  {"date": "2026-06-12", "field": "多模态", "company": "", "person": "", "content": "HYDRA-X提出原生统一多模态模型与整体视觉分词器，统一视觉理解与生成", "impact": "原生多模态统一架构是下一代基础模型的关键方向，HYDRA-X提供了重要技术路线", "source": "arXiv cs.CV"},
-  {"date": "2026-06-12", "field": "多模态", "company": "", "person": "", "content": "IterCAD提出迭代多模态Agent实现视觉引导的CAD生成与编辑", "impact": "工业设计领域的AI Agent应用新突破，CAD自动生成有望缩短产品设计周期", "source": "arXiv cs.CV"},
-  {"date": "2026-06-12", "field": "具身智能", "company": "", "person": "", "content": "Mana模型实现铰接工具的灵巧操作，突破机器人从刚体到可动工具的操控能力", "impact": "铰接工具操作是机器人进入日常场景的关键瓶颈，Mana的突破推动家庭服务机器人落地", "source": "arXiv cs.RO"},
-  {"date": "2026-06-12", "field": "具身智能", "company": "", "person": "", "content": "WEAVER提出更好更快更长的机器人操作世界模型，实现策略评估与优化", "impact": "世界模型是具身智能的核心组件，WEAVER为减少真实环境交互提供关键基础设施", "source": "arXiv cs.RO"},
-  {"date": "2026-06-12", "field": "具身智能", "company": "", "person": "", "content": "MCR-Bionic Hand利用解剖结构先验实现仿生灵巧手操作，从生物结构获取操控灵感", "impact": "仿生设计路线为机器人灵巧操作提供新范式，可能加速类人机器人发展", "source": "arXiv cs.RO"},
-  {"date": "2026-06-12", "field": "具身智能", "company": "", "person": "", "content": "Flow Reversal Steering方法通过反转流引导提升机器人通用策略在新任务上的表现", "impact": "让通用机器人策略快速适应新任务而不需重新训练，大幅提升具身智能的实用性", "source": "arXiv cs.RO"},
-  {"date": "2026-06-12", "field": "AI医疗", "company": "", "person": "", "content": "ArogyaSutra提出印度语多模态医学推理多Agent框架，弥合医疗AI语言鸿沟", "impact": "多语言医疗AI Agent对全球健康公平有重大意义，特别在医疗资源不足地区", "source": "arXiv"},
-  {"date": "2026-06-12", "field": "AI医疗", "company": "", "person": "", "content": "新研究系统分析医学影像AI中的幻觉问题，提出跨模态分类、检测与缓解框架", "impact": "医疗AI幻觉直接关系患者安全，该研究为可监管的医疗AI部署提供关键方法论", "source": "arXiv"},
-  {"date": "2026-06-12", "field": "教育", "company": "", "person": "", "content": "研究论文探讨AI原生软件工程对实践、教育和未来劳动力的深远影响", "impact": "AI正从根本上改变软件工程教育，高校需快速调整课程体系应对产业变革", "source": "arXiv"},
-  {"date": "2026-06-12", "field": "教育", "company": "", "person": "", "content": "研究探索Agent语音口音如何塑造K-12群体学习中的人机协作效果", "impact": "AI教育Agent的交互设计细节（如口音）对学习效果的影响被低估，值得教育科技领域关注", "source": "arXiv"},
-  {"date": "2026-06-12", "field": "芯片", "company": "", "person": "", "content": "BenDi提出面向边缘生物电子学的准随机脉动节能架构，用于可穿戴医疗设备", "impact": "AI芯片从云端下沉到生物电子边缘设备，为下一代可穿戴健康监测提供硬件基础", "source": "arXiv"},
-  {"date": "2026-06-12", "field": "芯片", "company": "", "person": "", "content": "新研究提出多GPU ML负载的资源感知计算-通信重叠优化方法", "impact": "多GPU训练效率优化是大模型训练的持续痛点，计算通信重叠方案可降低训练成本", "source": "arXiv"},
-  {"date": "2026-06-12", "field": "法律", "company": "Anthropic", "person": "Dario Amodei", "content": "Anthropic CEO呼吁对强大AI模型实施FAA式监管，企业应解除单一供应商依赖", "impact": "AI监管从行业自律走向类似航空安全的强制认证，企业AI采购策略需根本性调整", "source": "VentureBeat"},
-  {"date": "2026-06-12", "field": "金融", "company": "MassMutual", "person": "", "content": "MassMutual分享AI战略：12个月合同周期、多模型栈、零供应商锁定，开发者生产力提升30%", "impact": "传统金融企业的务实AI采购策略为行业提供参考模板，短期合同+多模型策略降低风险", "source": "VentureBeat"},
-  {"date": "2026-06-12", "field": "神经科学", "company": "", "person": "", "content": "NeuralSet发布高性能Python神经AI工具包，桥接神经科学与AI研究", "impact": "神经科学与AI的双向交叉研究需要更好的工具基础设施，NeuralSet填补这一空白", "source": "arXiv q-bio.NC"},
-  {"date": "2026-06-12", "field": "能源", "company": "", "person": "", "content": "新研究探索浮式太阳能光伏在南美洲的潜力，AI辅助能源系统优化", "impact": "AI在可再生能源部署优化中的应用正从预测扩展到选址和系统设计层面", "source": "arXiv"},
-
   {"date": "2026-06-12", "field": "大模型", "company": "OpenAI", "person": "", "content": "GPT-5.5 在严苛的 Agents' Last Exam 基准测试中意外击败 Claude Fable 5", "impact": "表明 OpenAI 在多步骤复杂指令遵循方面取得领先，可能重塑企业 AI 模型选型格局", "source": "VentureBeat"},
   {"date": "2026-06-12", "field": "大模型", "company": "Google", "person": "", "content": "Google 发布 DiffusionGemma，可并行生成 256 个 token 并自我纠错，在消费级 GPU 上快速运行", "impact": "扩散模型在文本生成领域的新范式突破，可能改变自回归模型一统天下的局面", "source": "VentureBeat"},
   {"date": "2026-06-12", "field": "大模型", "company": "", "person": "", "content": "研究人员仅用 1500 美元从头训练了一个 1B 推理模型，在关键基准上匹敌更大规模的 LLM", "impact": "大幅降低 AI 训练门槛，证明高质量小模型可以不必依赖互联网规模数据", "source": "VentureBeat"},
@@ -367,6 +348,51 @@ document.getElementById('filter-keyword').addEventListener('input', filterData);
 
 // 初次渲染
 renderTable(newsData);
+
+// 表头 sticky（JS 方案）
+(function(){
+  const thead = document.querySelector('thead');
+  const topBar = document.querySelector('.top-bar');
+  if (!thead || !topBar) return;
+  const tr = thead.querySelector('tr');
+  const offset = topBar.offsetHeight + 8;
+  let fixed = false, placeholder = null, fixTriggerY = 0, fixedDiv = null;
+
+  function check() {
+    if (!fixed) {
+      const rect = thead.getBoundingClientRect();
+      if (rect.top <= offset) {
+        fixed = true;
+        fixTriggerY = window.scrollY;
+        // 克隆表头到独立 fixed div
+        fixedDiv = document.createElement('div');
+        fixedDiv.className = 'fixed';
+        fixedDiv.style.top = offset + 'px';
+        fixedDiv.style.width = thead.offsetWidth + 'px';
+        fixedDiv.style.minWidth = '1100px';
+        const origThs = Array.from(thead.querySelectorAll('th'));
+        const widths = origThs.map(th => th.offsetWidth);
+        const headHTML = '<table><thead>' + tr.outerHTML + '</thead></table>';
+        fixedDiv.innerHTML = headHTML;
+        document.body.appendChild(fixedDiv);
+        // 同步列宽
+        fixedDiv.querySelectorAll('th').forEach((th, i) => { th.style.width = widths[i] + 'px'; });
+        // 占位符
+        placeholder = tr.cloneNode(true);
+        placeholder.classList.add('fixed-placeholder');
+        thead.insertBefore(placeholder, tr);
+      }
+    } else {
+      if (window.scrollY < fixTriggerY) {
+        fixed = false;
+        if (placeholder) placeholder.remove();
+        if (fixedDiv) { fixedDiv.remove(); fixedDiv = null; }
+      }
+    }
+  }
+  setInterval(check, 150);
+  check();
+})();
 </script>
 </body>
 </html>
