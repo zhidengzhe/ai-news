@@ -53,8 +53,9 @@
     background: #0d0b0b; color: var(--text);
   }
   .top-bar .filters select option:hover,
-  .top-bar .filters select option:checked {
-    background: var(--accent); color: #0d0b0b;
+  .top-bar .filters select option:checked,
+  .top-bar .filters select option:focus {
+    background: var(--accent) !important; color: #0d0b0b !important;
   }
   #filter-date { width: 145px; padding-left: 14px; }
   .top-bar .filters select:focus {
