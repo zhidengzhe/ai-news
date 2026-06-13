@@ -386,7 +386,7 @@ renderTable(newsData);
   const topBar = document.querySelector('.top-bar');
   if (!thead || !topBar) return;
   const tr = thead.querySelector('tr');
-  const offset = topBar.offsetHeight + 8;
+  const offset = topBar.offsetHeight;
   let fixed = false, placeholder = null, fixTriggerY = 0, fixedDiv = null;
 
   function check() {
