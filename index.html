@@ -64,9 +64,9 @@
     border-bottom: 2px solid var(--accent);
     white-space: nowrap;
   }
-  thead.pinned { position: fixed; top: 0; z-index: 10; }
-  thead.pinned th { background: var(--th-bg); }
-  .thead-spacer { visibility: hidden; }
+  thead { position: sticky; top: 102px; z-index: 5; }
+  thead th { background: var(--th-bg); }
+  .thead-spacer { display: none; }
   tbody td {
     padding: 10px 12px;
     border-bottom: 1px solid var(--border);
@@ -370,47 +370,6 @@ document.getElementById('filter-keyword').addEventListener('input', filterData);
 
 // 初次渲染
 renderTable(newsData);
-
-// 表头 sticky（JS 方案）
-(function(){
-  const thead = document.querySelector('thead');
-  const topBar = document.querySelector('.top-bar');
-  if (!thead || !topBar) return;
-  const tr = thead.querySelector('tr');
-  const offset = topBar.offsetHeight + 8;
-  let pinned = false, spacer = null, triggerY = 0;
-
-  function check() {
-    if (!pinned) {
-      const rect = thead.getBoundingClientRect();
-      if (rect.top <= offset) {
-        pinned = true;
-        triggerY = window.scrollY;
-        // spacer 维持表高度
-        spacer = tr.cloneNode(true);
-        spacer.classList.add('thead-spacer');
-        thead.insertBefore(spacer, tr);
-        // 固定原始 thead，补 table padding 防 tbody 上跳
-        thead.classList.add('pinned');
-        thead.style.top = offset + 'px';
-        thead.style.width = thead.parentElement.offsetWidth + 'px';
-        const table = thead.parentElement;
-        table.style.paddingTop = tr.offsetHeight + 'px';
-      }
-    } else {
-      if (window.scrollY < triggerY) {
-        pinned = false;
-        if (spacer) { spacer.remove(); spacer = null; }
-        thead.classList.remove('pinned');
-        thead.style.top = '';
-        thead.style.width = '';
-        thead.parentElement.style.paddingTop = '';
-      }
-    }
-  }
-  setInterval(check, 150);
-  check();
-})();
 </script>
 </body>
 </html>
