@@ -364,15 +364,14 @@ const newsData = [
   {date:"2026-06-10",field:"教育",company:"",person:"",content:"AI 赋能未来基础教育论坛在武汉举行，中小学 AI 教学成果大赛启动。",impact:"AI 教育从高校下沉至基础教育，K12 阶段成为新战场。",source:"北师大新闻网"}
 ];
 
-// 去重：相同日期+领域、内容高度相似的只保留较详细的一条
+// 去重：相同领域、内容高度相似的只保留最早出现（最先报道）的一条
 function dedupNews(data) {
   const result = [];
-  const seen = {}; // key: date|field|normalized_content_key
+  const seen = {}; // key: field, value: [{index, fingerprint}]
 
-  // 先生成简单的相似度指纹
+  // 生成内容相似度指纹
   function fingerprint(content) {
     const words = content.replace(/[^\w\u4e00-\u9fff]/g, ' ').toLowerCase().split(/\s+/).filter(w => w.length > 1);
-    // 取出现频率最高的词做指纹
     const freq = {};
     words.forEach(w => { freq[w] = (freq[w] || 0) + 1; });
     return Object.entries(freq).filter(([_,c]) => c >= 2).map(([w]) => w).sort().join(',');
@@ -390,26 +389,33 @@ function dedupNews(data) {
   const fpCache = [];
   for (let i = 0; i < data.length; i++) {
     fpCache[i] = fingerprint(data[i].content);
-    const key = data[i].date + '|' + data[i].field;
+    const key = data[i].field; // 只按领域分组，不限日期
     if (!seen[key]) seen[key] = [];
 
     let isDup = false;
     for (const existing of seen[key]) {
-      if (similarity(fpCache[i], fpCache[existing]) > 0.55) {
-        // 重复：保留内容更长的
-        if (data[i].content.length > data[existing].content.length) {
-          // 替换旧的
-          const idx = result.findIndex(r => r === data[existing]);
+      if (similarity(fpCache[i], fpCache[existing.index]) > 0.55) {
+        // 重复：保留更早日期；同日期保留内容更长的
+        if (data[i].date < data[existing.index].date) {
+          // 当前更早，替换旧的
+          const idx = result.findIndex(r => r === data[existing.index]);
           if (idx >= 0) result[idx] = data[i];
-          // 更新 seen 引用
-          seen[key] = seen[key].map(s => s === existing ? i : s);
+          existing.index = i;
+          existing.fingerprint = fpCache[i];
+        } else if (data[i].date === data[existing.index].date && 
+                   data[i].content.length > data[existing.index].content.length) {
+          // 同日期，保留更详细的
+          const idx = result.findIndex(r => r === data[existing.index]);
+          if (idx >= 0) result[idx] = data[i];
+          existing.index = i;
+          existing.fingerprint = fpCache[i];
         }
         isDup = true;
         break;
       }
     }
     if (!isDup) {
-      seen[key].push(i);
+      seen[key].push({index: i, fingerprint: fpCache[i]});
       result.push(data[i]);
     }
   }
