@@ -436,7 +436,7 @@ function dedupNews(data) {
     const words = content.replace(/[^\w\u4e00-\u9fff]/g, ' ').toLowerCase().split(/\s+/).filter(w => w.length > 1);
     const freq = {};
     words.forEach(w => { freq[w] = (freq[w] || 0) + 1; });
-    return Object.entries(freq).filter(([_,c]) => c >= 2).map(([w]) => w).sort().join(',');
+    return Object.keys(freq).sort().join(',');
   }
 
   // 两条内容相似度：共享词比例
