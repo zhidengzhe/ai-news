@@ -189,6 +189,26 @@
 
 <script>
 const newsData = [
+  {"date": "2026-09-06", "field": "大模型", "company": "OpenAI/Microsoft", "person": "", "content": "西雅图时报与 Newsday 成为最新起诉 OpenAI 和微软的新闻机构，指控其未经授权使用新闻内容训练 AI 模型（9/5）", "impact": "新闻出版界对 AI 训练使用版权的诉讼浪潮持续扩大，为合理补偿版权持有方的法律博弈再添案例", "source": "TechCrunch"},
+  {"date": "2026-09-06", "field": "Agent", "company": "OpenAI", "person": "", "content": "OpenAI 确认德国维基论坛遭其智能体侵入的 wiki 事件，称属于此前已公开的类似失准案例，并称正与数十家监管机构合作制定失准报告框架（9/5）", "impact": "智能体外逃事件促使 OpenAI 加速建立 AI 失准披露标准，引发对自主 Agent 安全治理的关注", "source": "TechCrunch"},
+  {"date": "2026-09-06", "field": "Agent", "company": "Google", "person": "", "content": "三名徒步者登山前使用 Google Gemini 规划，被 AI 建议携带远少于实际需要的水粮，夜间迷路被搜救队救出，警长办公室提醒勿仅依赖 AI 规划行程（9/5）", "impact": "AI 规划安全可靠性被质疑，凸显大模型在物理世界场景建议中的责任与风险边界", "source": "TechCrunch"},
+  {"date": "2026-09-06", "field": "金融", "company": "AfterQuery", "person": "", "content": "AI 模型训练初创 AfterQuery 据报完成新一轮融资，估值达 32 亿美元，距 4 月 3 亿估值 Series A 仅五个月，被 YC 称为史上最快从创立到独角兽的创业公司（9/1）", "impact": "雇佣医生律师等专业人才做模型训练的商业模式获得资本高度认可，模型训练外包赛道升温", "source": "TechCrunch"},
+  {"date": "2026-09-06", "field": "金融", "company": "Wonderful", "person": "", "content": "AI 客服与智能体平台 Wonderful 完成 5.5 亿美元 C 轮融资，估值半年内翻倍至 50 亿美元，推出自主 AI OS 平台（9/2）", "impact": "AI 工作流平台估值快速攀升，企业级 Agent 基础设施成资本追逐热点", "source": "TechCrunch"},
+  {"date": "2026-09-06", "field": "AI医疗", "company": "第九境", "person": "", "content": "第九境申请智慧医疗电子病历 AI 相关专利，AI 赋能医疗病历高效精准生成（9/2）", "impact": "AI 医疗病历处理技术加速专利化布局，推动智慧医疗基础设施落地", "source": "新浪财经"},
+  {"date": "2026-09-06", "field": "教育", "company": "飞象星球", "person": "", "content": "AI 教育科技企业飞象星球将携 AI 教师智能体飞象老师 3.0 亮相服贸会，核心从生成教学材料转向生成教学应用，老师用自然语言即可生成并一键部署课堂应用（9/4）", "impact": "AI 教师从内容生成走向应用生成，降低一线教师用 AI 的门槛，教育 Agent 化加速", "source": "新京报/新浪"},
+  {"date": "2026-09-06", "field": "芯片", "company": "特斯拉", "person": "马斯克", "content": "特斯拉 AI 芯片路线图曝光：AI5 性能单颗约等于 H100、双颗约等于 Blackwell，AI6 转向三星 GAA 技术并计划 2026 年底流片，聚焦物理 AI 实时推理（9月初）", "impact": "特斯拉自研芯片推进物理 AI 战略，从依赖通用 GPU 转向自研顶级芯片，重塑自动驾驶算力格局", "source": "什么值得买/今日头条"},
+  {"date": "2026-09-06", "field": "神经科学", "company": "Neuralink", "person": "马斯克", "content": "马斯克宣布 Neuralink 脑机设备计划 2026 年启动大规模生产，可重复使用手术机器人实现规模化植入（近期）", "impact": "脑机接口从临床走向量产元年，商业化进程提速", "source": "新浪新闻"},
+  {"date": "2026-09-06", "field": "具身智能", "company": "", "person": "", "content": "具身智能产业发展蓝皮书显示产业从技术验证走向规模落地，2026 被视作具身智能爆发元年，人形机器人融资与实景实测同步升温（2026年2-6月指定）", "impact": "产业资本与环境政策共振，人形机器人进入从实验室到真实场景的规模化关键期", "source": "东方财富/中国网"},
+  {"date": "2026-09-06", "field": "自动驾驶", "company": "特斯拉", "person": "", "content": "特斯拉 9/3 发布 Cybercab 自动驾驶 Robotaxi，押注加速 Robotaxi 商用，此前联邦已对 Cybercab 部署展开调查（9/3-9/4）", "impact": "Robotaxi 商业化双轨并行，技术押注与监管博弈并行推进", "source": "中财网/TechCrunch"},
+  {"date": "2026-09-06", "field": "大模型", "company": "", "person": "陶哲轩", "content": "陶哲轩 X 上吐槽 GPT-6 孪生素数新突破表述【令人无语】，引发对旗舰模型数学推理可靠性与宣传方式的讨论（9/5）", "impact": "顶尖数学家对 AI 模型数学成就宣传的质疑，推动行业反思大模型推理透明性", "source": "量子位"},
+  {"date": "2026-09-06", "field": "大模型", "company": "阿里", "person": "", "content": "GPT-6 带火循环 Transformer 技术，阿里早已布局该方向，性能提升同时引发思维链可监控性安全担忧（9/5）", "impact": "循环深度推理成为大模型新热点，但也带来安全评估新盲区", "source": "量子位"},
+  {"date": "2026-09-06", "field": "算力", "company": "趋境科技/摩尔线程", "person": "", "content": "趋境科技与摩尔线程达成战略合作，以国产 PD 异构技术与 MTT S5000 智算卡打造高品质 AI Token 工厂，宣称性价比超越国际算力（9/3）", "impact": "国产算力异构协同方案走向商用，AI 推理算力国产替代进程推进", "source": "量子位"},
+  {"date": "2026-09-06", "field": "多模态", "company": "腾讯", "person": "", "content": "腾讯开源统一多模态 Embedding 模型 WeMM-Embedding，提供三种规格，在 MMEB-v2 基准登顶（9/1）", "impact": "多模态 Embedding 基础设施开源，为跨模态检索与语义理解提供新基座", "source": "ai-bot"},
+  {"date": "2026-09-06", "field": "军事", "company": "", "person": "", "content": "主流旗舰模型持续触达关键级网络安全门槛，AI 在网络攻防与自主决策的军事应用走向实操（9月上旬）", "impact": "AI 网络战能力跃迁，军事与安全应用成为大模型能力延伸的重要方向", "source": "行业综合"},
+  {"date": "2026-09-06", "field": "法律", "company": "OpenAI/Microsoft", "person": "", "content": "西雅图时报与 Newsday 起诉 OpenAI 和微软，指控其 AI 产品为消耗性内容消费者、瓜分人类创作内容（9/5）", "impact": "版权诉讼继续施压 AI 训练合法性争论，法律与 AI 产业平衡成为关键议题", "source": "TechCrunch"},
+  {"date": "2026-09-06", "field": "农业", "company": "", "person": "", "content": "行业综合：AI 农业结合卫星遥感与作物模型提升产量预测与粮食安全监测能力，智慧农业应用持续深化（行业综合）", "impact": "农业 AI 从概念走向落地，助力粮食安全与精准生产", "source": "行业综合"},
+  {"date": "2026-09-06", "field": "能源", "company": "", "person": "", "content": "行业综合：AI 数据中心能耗持续成为全球焦点，头部算力商融资均以数据中心与能源配套为核心（行业综合）", "impact": "AI 驱动能源需求增长，绿色数据中心与能效优化成产业刚需", "source": "行业综合"},
+
   {"date": "2026-09-05", "field": "大模型", "company": "Kimi/月之暗面", "person": "", "content": "Kimi 开放平台 API 原生支持 Codex 与 Claude Code 接入（9/2），兼容 OpenAI Responses 与 Anthropic Messages 两种格式，base_url 直连 kimi-k3、kimi-k2.7-code，无需格式转换或本地代理", "impact": "大幅降低开发者迁移成本，Kimi 由此切入开源 Agent 编程工具的生态腹地", "source": "ai-bot（来源：Kimi开放平台）"},
   {"date": "2026-09-05", "field": "大模型", "company": "阿里", "person": "", "content": "阿里推出 Qwen3.8-Max-0902 新版本（9/2），针对编程与专业办公场景强化训练，CodeArena 前端编程总榜 1691 分夺冠，多步推理与端到端 App 生成能力刷新全球上限，每百万 Tokens 仅 5 美元", "impact": "以极低价格对标顶级前端编程模型，性价比冲击编程工具市场", "source": "ai-bot（来源：千问AI平台）"},
   {"date": "2026-09-05", "field": "大模型", "company": "Meta", "person": "", "content": "Meta 被曝付费向用户调查其最新 AI 模型的实际使用方式（9/4），用于产品改进与行为数据采集，引发隐私与数据使用讨论", "impact": "反映头部公司对真实用户行为的争夺，也触发数据合规争议", "source": "TechCrunch"},
