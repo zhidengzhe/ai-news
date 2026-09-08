@@ -189,6 +189,25 @@
 
 <script>
 const newsData = [
+  {"date": "2026-09-08", "field": "大模型", "company": "DeepSeek", "person": "", "content": "DeepSeek 开启 V4.1 Flash 中间版本内测（9/8），采用新模型结构、原生多模态，能力/速度/成本进一步优化，临时端点 9/10 到期", "impact": "DeepSeek 首次明确新模型结构与原生多模态，从外挂 Vision 走向内生多模态，预示 V4.1 正式版方向，或冲击 Flash 生态价格与能力格局", "source": "腾讯科技"},
+  {"date": "2026-09-08", "field": "金融", "company": "Mistral AI", "person": "", "content": "法国 AI 实验室 Mistral 完成 30 亿欧元 D 轮融资（9/8），估值约 210 亿欧元，由三星、Scaleup Europe 和 PSG Equity 领投", "impact": "欧洲主权 AI 叙事下最大单笔 AI 融资之一，三星领投显示硬件巨头对欧洲模型层押注，为 Mistral 对垒美中巨头补充弹药", "source": "TechCrunch"},
+  {"date": "2026-09-08", "field": "Agent", "company": "面壁智能", "person": "", "content": "面壁智能联合 OpenBMB 开源 MiniCPM5-2B（9/8），2B 端侧语言基座，支持工具调用/深度搜索/代码生成，初步实现端侧通用 Agent 雏形", "impact": "延续小钢炮路线把大模型能力压到 2B 端侧，是端侧通用智能体的重要一步，瞄准本地设备上的 agent 化体验", "source": "界面新闻"},
+  {"date": "2026-09-08", "field": "多模态", "company": "蚂蚁集团", "person": "", "content": "蚂蚁集团开源统一图像生成与编辑模型 LLaDA-Image（9/8）", "impact": "蚂蚁在扩散语言模型路线上再进一步，统一图像生成与编辑能力开源，降低多模态应用门槛", "source": "ai-bot.cn"},
+  {"date": "2026-09-08", "field": "大模型", "company": "腾讯混元", "person": "", "content": "腾讯混元升级 Hy4 preview 模型（9/8），主打推理与多模态能力", "impact": "国内大模型竞争持续加速，腾讯在推理与多模态维度跟进升级，Hy4 系列成为对抗 GPT-6 等旗舰的主力", "source": "ai-bot.cn"},
+  {"date": "2026-09-08", "field": "芯片", "company": "Anthropic", "person": "", "content": "Anthropic 开放模型硬件标准 MHS 研究预览（8/27），旨在建立 AI 硬件与模型之间的标准接口", "impact": "Anthropic 向芯片/硬件层渗透，试图定义模型与硬件协同的标准，可能影响 AI 芯片生态的互操作格局", "source": "Anthropic 官网"},
+  {"date": "2026-09-08", "field": "算力", "company": "Nscale", "person": "", "content": "AI 算力提供商 Nscale 寻求 35 亿美元 pre-IPO 融资（9/4）", "impact": "云算力/主权算力玩家加速扩张，pre-IPO 大额融资显示市场对可替代 GPU 供给的需求旺盛", "source": "TechCrunch"},
+  {"date": "2026-09-08", "field": "能源", "company": "Crusoe", "person": "", "content": "AI 数据中心公司 Crusoe 据报道以 300 亿美元估值融资 30 亿美元（9/3）", "impact": "AI 算力基础设施融资持续升温，高估值反映市场对电力和数据中心资产的强烈需求", "source": "TechCrunch"},
+  {"date": "2026-09-08", "field": "具身智能", "company": "XDOF", "person": "", "content": "机器人数据初创 XDOF（脱密仅 3 个月）正洽谈 B 轮融资，估值约 12 亿美元（9/4）", "impact": "机器人数据赛道持续火热，具身智能对高质量数据的刚需正催生新独角兽", "source": "TechCrunch"},
+  {"date": "2026-09-08", "field": "自动驾驶", "company": "Tesla", "person": "", "content": "联邦对特斯拉 Cybercab 部署展开调查（9/4），Robotaxi 商业化在监管中推进", "impact": "特斯拉 Cybercab 上路即遭遇监管审查，自动驾驶出租车规模化面临安全与法规的双重考验", "source": "TechCrunch"},
+  {"date": "2026-09-08", "field": "教育", "company": "", "person": "", "content": "Wired 分析 AI 在求职市场正制造无限厄运循环（9/4）：求职者用 AI 批量投递，雇主用 AI 筛选，双方互不信任加剧", "impact": "揭示 AI 工具在劳动力市场形成的囚徒困境，求职招聘的 AI 军备竞赛可能摧毁真实匹配价值", "source": "Wired"},
+  {"date": "2026-09-08", "field": "神经科学", "company": "Google DeepMind", "person": "", "content": "Google DeepMind 发布 AlphaGenome Atlas（9月）：人类基因组每一种可能的 DNA 字母变化的预测图谱", "impact": "继 AlphaFold 后 DeepMind 再押基因组学，把 AI 预测扩展到 DNA 变异图谱，对精准医疗和遗传病研究意义重大", "source": "DeepMind 博客"},
+  {"date": "2026-09-08", "field": "法律", "company": "", "person": "", "content": "《西雅图时报》《Newsday》成为最新起诉 OpenAI 和微软的媒体机构（9/5），出版业版权诉讼持续扩大", "impact": "媒体版权诉讼战再添两员，AI 训练数据的版权边界仍是悬而未决的核心法律议题", "source": "TechCrunch"},
+  {"date": "2026-09-08", "field": "AI医疗", "company": "DeepMind", "person": "", "content": "DeepMind 发布 AlphaGenome Atlas 前，其 WeatherNext 等模型持续扩展科学应用；Anthropic 也宣布扩大对科学家的支持（8/27）", "impact": "AI for Science 加速，基因组/气候等基础科学研究成为前沿实验室重点投入方向", "source": "DeepMind/Anthropic 博客"},
+  {"date": "2026-09-08", "field": "Agent", "company": "", "person": "", "content": "GitHub Trending 涌现一批 Agent 工具：ECC 优化多工具 agent 性能、ponytail 让 agent 像最懒的资深工程师思考、openai/skills 技能目录等", "impact": "技术社群正聚焦把 agent 用得更好——性能优化、代码简洁哲学、技能生态，agent 工具进入精细化阶段", "source": "GitHub Trending"},
+  {"date": "2026-09-08", "field": "多模态", "company": "HeyGen", "person": "", "content": "HeyGen 开源 hyperframes（9月）——写 HTML 渲染视频的工具，专为 agent 构建", "impact": "把视频生成抽象为 HTML 渲染，降低 agent 生成视频的技术门槛，是程序化视频内容生产的探索", "source": "GitHub Trending"},
+  {"date": "2026-09-08", "field": "农业", "company": "", "person": "", "content": "行业综合：AI 农业应用持续深化——面壁 MiniCPM5-2B 端侧模型、蚂蚁多模态开源等技术进展为农业智能终端与田间多模态识别提供更低门槛的基座能力", "impact": "端侧与多模态 AI 的普及正降低农业数字化门槛，为作物识别、智能灌溉等场景提供可部署基础", "source": "行业综合"},
+  {"date": "2026-09-08", "field": "军事", "company": "", "person": "", "content": "行业综合：AI 在军事领域的应用持续扩展——Anthropic 开放 MHS 模型硬件标准、建立企业前沿安全护栏（9/1），AI 安全与防御边界成为业界焦点", "impact": "前沿实验室对 AI 安全与自主 agent 防御的投资持续升温，反映 AI 攻防正在成为基础设施级议题", "source": "行业综合"},
+
   {"date": "2026-09-08", "field": "大模型", "company": "OpenAI", "person": "", "content": "OpenAI 发布旗舰大模型 GPT-6 Astra（9/4），官网与多路报道称其能像人类一样操作电脑，或许开启 AGI 时代", "impact": "GPT-6 Astra 被视为 OpenAI 新一代旗舰，围绕其 agent 能力与安全性的争论也随之升温。", "source": "TechCrunch/Wired"},
   {"date": "2026-09-08", "field": "大模型", "company": "腾讯混元", "person": "", "content": "腾讯混元升级旗舰模型 Hy4 preview（9/8），主打推理与多模态能力", "impact": "国产大模型持续迭代，Hy4 preview 升级进一步加码混元生态。", "source": "ai-bot.cn"},
   {"date": "2026-09-08", "field": "大模型", "company": "Anthropic", "person": "", "content": "Anthropic 推出 Claude Fable 5.1 与 Claude Mythos 5.1 两款模型（9/2），延续其迅猛迭代节奏", "impact": "Anthropic 在旗舰模型之外持续补充分支系列，覆盖更多场景。", "source": "Anthropic 官网"},
