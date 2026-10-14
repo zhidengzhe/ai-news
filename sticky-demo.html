@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sticky header 预览</title>
+<style>
+  :root { --bg:#0d0b0b; --text:#e0dcd5; --muted:#706b65; --accent:#ff8a5f; --border:#252220; --card:#151313; }
+  * { margin:0;padding:0;box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'SF Mono',monospace; font-size:13px; line-height:1.6; }
+
+  /* sticky header */
+  .top-bar {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 20px 8px;
+  }
+  .top-bar h1 {
+    font-size: 1.4rem; font-weight: 400; color: var(--accent); letter-spacing: 6px;
+    font-family: 'SF Mono','Cascadia Code','Consolas',monospace;
+    text-align: center; margin-bottom: 12px;
+    text-shadow: 0 0 20px rgba(255,138,95,0.25);
+  }
+  .top-bar .filters {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .top-bar select, .top-bar input {
+    background: var(--card); color: var(--text); border: none; padding: 5px 10px;
+    font-family: inherit; font-size: 12px;
+  }
+  .top-bar select:focus, .top-bar input:focus { outline: none; border-bottom: 1px solid var(--accent); }
+
+  /* table */
+  .table-wrap { padding: 16px 20px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; min-width: 900px; }
+  thead th { background: #121010; color: var(--accent); text-align: left; padding: 8px 10px; font-weight:400; font-size: 11px; border-bottom: 2px solid var(--accent); white-space: nowrap; position: sticky; top: 48px; z-index: 2; }
+  tbody td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; font-size: 11px; }
+  tbody tr:hover td { background: var(--card); }
+  .date { color: var(--accent); white-space: nowrap; }
+  .field { color: #b8a07a; }
+  .company { color: #7ab8a0; }
+  .person { color: #a07ab8; }
+  .date-group td { background: #121010; color: var(--accent); font-size: 12px; padding: 12px 10px 6px; border-bottom: 1px solid var(--accent); }
+
+  /* mobile cards */
+  .cards-wrap { display: none; }
+  @media (max-width: 768px) {
+    .table-wrap { display: none; }
+    .cards-wrap { display: block; padding: 0 12px 24px; }
+    .top-bar { padding: 10px 14px; flex-direction: column; align-items: stretch; }
+    .top-bar h1 { font-size: 1rem; text-align: center; }
+    .top-bar .filters { flex-direction: column; }
+    .date-group-card { color: var(--accent); font-size: 13px; padding: 20px 0 8px; border-bottom: 1px solid var(--accent); margin-bottom: 8px; }
+    .card { background: var(--card); border: 1px solid var(--border); padding: 14px; margin-bottom: 10px; }
+    .card .meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; font-size: 12px; }
+    .card .meta .c-date { color: var(--accent); }
+    .card .meta .c-field { color: #b8a07a; }
+    .card .meta .c-company { color: #7ab8a0; }
+    .card .meta .c-person { color: #a07ab8; }
+    .card .c-content { margin-bottom: 8px; line-height: 1.55; font-size: 14px; }
+    .card .c-impact { color: var(--accent); font-size: 13px; margin-bottom: 6px; line-height: 1.5; }
+    .card .c-source { color: var(--muted); font-size: 11px; font-style: italic; }
+
+    thead th { top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>AI 改变未来</h1>
+  <div class="filters">
+    <input type="text" placeholder="日期">
+    <select><option>全部领域</option><option>大模型</option><option>Agent</option></select>
+    <select><option>全部公司</option><option>OpenAI</option><option>DeepSeek</option></select>
+    <input type="text" placeholder="搜索关键词">
+  </div>
+</div>
+
+<div class="table-wrap">
+<table>
+<thead>
+  <tr><th>日期</th><th>领域</th><th>公司</th><th>人物</th><th>内容</th><th>影响和意义</th><th>来源</th></tr>
+</thead>
+<tbody>
+<tr class="date-group"><td colspan="7">2026-06-11 · 33条</td></tr>
+<tr><td class="date">06-11</td><td class="field">大模型</td><td class="company">Anthropic</td><td></td><td>Claude Fable 5 正式发布，定价仅为 Mythos Preview 的一半</td><td>大幅降低企业接入成本，加速大模型在各行业的落地应用</td><td>VentureBeat</td></tr>
+<tr><td class="date">06-11</td><td class="field">大模型</td><td class="company">OpenAI</td><td>Sam Altman</td><td>GPT-5.5 在全新 Agents' Last Exam 基准中击败 Claude Fable 5</td><td>OpenAI 在 Agent 场景下的指令遵循能力仍具竞争优势</td><td>VentureBeat</td></tr>
+<tr><td class="date">06-11</td><td class="field">Agent</td><td class="company">Microsoft</td><td></td><td>微软发布 agent-lightning：专为AI Agent打造的「绝对训练器」</td><td>填补Agent训练工具链空白</td><td>GitHub</td></tr>
+<tr><td class="date">06-11</td><td class="field">芯片</td><td class="company">NVIDIA</td><td>黄仁勋</td><td>黄仁勋 Computex 发布 6 款新芯片 + Nemotron 3 Ultra</td><td>推理侧布局加速，重塑开源生态</td><td>NVIDIA</td></tr>
+<tr><td class="date">06-11</td><td class="field">具身智能</td><td></td><td>Deepak Pathak</td><td>FACTR 2：商用机械臂通过学习外力感知提升策略学习效果</td><td>使普通工业机器人获得触觉</td><td>arXiv</td></tr>
+<tr class="date-group"><td colspan="7">2026-06-10 · 14条</td></tr>
+<tr><td class="date">06-10</td><td class="field">大模型</td><td class="company">智谱AI</td><td></td><td>智谱AI发布 GLM-4.7，SWE-bench Verified 开源第一</td><td>国产模型在编程能力上首次全面对标国际闭源模型</td><td>智谱AI</td></tr>
+<tr><td class="date">06-10</td><td class="field">具身智能</td><td class="company">优必选</td><td></td><td>优必选人形机器人 2025 营收增长 2203.7%</td><td>中国具身智能商业化从实验室走向规模化</td><td>机器之心</td></tr>
+<tr><td class="date">06-10</td><td class="field">Agent</td><td class="company">Meta</td><td>Zuckerberg</td><td>Meta 数十亿美元收购 Manus</td><td>中美 AI 脱钩从芯片层蔓延至应用层</td><td>钛媒体</td></tr>
+<tr><td class="date">06-10</td><td class="field">自动驾驶</td><td class="company">Waymo</td><td></td><td>Waymo 里程突破 1.7 亿英里</td><td>规模化验证数据将成为 L4 监管审批的关键筹码</td><td>Waymo</td></tr>
+<tr><td class="date">06-10</td><td class="field">金融</td><td class="company">DeepSeek</td><td>梁文锋</td><td>DeepSeek 梁文锋考虑公司估值，推进融资洽谈</td><td>国产大模型头部启动资本化</td><td>凤凰科技</td></tr>
+</tbody>
+</table>
+</div>
+
+</body>
+</html>

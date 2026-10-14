@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>header优化 预览</title>
+<style>
+  :root { --bg:#0d0b0b; --text:#e0dcd5; --muted:#706b65; --accent:#ff8a5f; --border:#252220; --card:#151313; --th-bg:#121010; }
+  * { margin:0;padding:0;box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'SF Mono',monospace; font-size:14px; line-height:1.6; }
+  .top-bar { position:sticky; top:0; z-index:10; background:var(--bg); border-bottom:1px solid var(--border); padding:10px 20px 8px; }
+  .top-bar h1 { font-size:1.4rem; font-weight:400; color:var(--accent); letter-spacing:6px; font-family:'SF Mono',monospace; text-align:center; margin-bottom:12px; text-shadow:0 0 20px rgba(255,138,95,0.25); }
+  .top-bar .filters { display:flex; gap:8px; flex-wrap:wrap; }
+  .top-bar select,.top-bar input { background:#0d0b0b; color:var(--text); border:none; padding:5px 10px; font-family:inherit; font-size:12px; }
+  #filter-date { width:145px; }
+
+  /* ⬇ 缩小空白 */
+  .table-wrap { padding: 8px 20px; overflow-x:auto; }
+  table { width:100%; border-collapse:separate; border-spacing:0; min-width:900px; }
+  /* ⬇ 表头居中，橙色分隔线在下方 */
+  thead th { background:var(--th-bg); color:var(--accent); text-align:center; padding:10px 12px; font-weight:400; font-size:12px; border-bottom:2px solid var(--accent); white-space:nowrap; }
+  tbody td { padding:8px 10px; border-bottom:1px solid var(--border); vertical-align:top; font-size:12px; }
+  tbody tr:hover td { background:var(--card); }
+  .date { color:var(--accent); white-space:nowrap; }
+  .field { color:#b8a07a; }
+  .company { color:#7ab8a0; }
+  .person { color:#a07ab8; }
+  .date-group td { background:var(--th-bg); color:var(--accent); font-size:12px; padding:12px 10px 6px; border-bottom:1px solid var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>AI 改变未来</h1>
+  <div class="filters">
+    <input type="text" id="filter-date" placeholder="日期" value="2026-06-11">
+    <select><option>全部领域</option><option>大模型</option></select>
+    <select><option>全部公司</option><option>OpenAI</option></select>
+    <input type="text" placeholder="搜索关键词">
+  </div>
+</div>
+
+<div class="table-wrap">
+<table>
+<thead>
+  <tr><th>日期</th><th>领域</th><th>公司</th><th>人物</th><th>内容</th><th>影响和意义</th><th>来源</th></tr>
+</thead>
+<tbody>
+<tr class="date-group"><td colspan="7">2026-06-12 · 30条</td></tr>
+<tr><td class="date">06-12</td><td class="field">大模型</td><td class="company">Anthropic</td><td></td><td>Claude Fable 5 正式发布</td><td>大幅降低企业接入成本</td><td>VentureBeat</td></tr>
+<tr><td class="date">06-12</td><td class="field">Agent</td><td class="company">Microsoft</td><td></td><td>微软开源 SkillOpt</td><td>Agent 技能管理自动化</td><td>VentureBeat</td></tr>
+<tr><td class="date">06-12</td><td class="field">具身智能</td><td></td><td></td><td>Mana 灵巧手操控工具</td><td>机器人从抓取迈向工具使用</td><td>arXiv</td></tr>
+<tr><td class="date">06-12</td><td class="field">芯片</td><td class="company">NVIDIA</td><td></td><td>下一代 AI 芯片架构</td><td>10 倍能效提升</td><td>行业综合</td></tr>
+<tr><td class="date">06-12</td><td class="field">大模型</td><td class="company">Google</td><td></td><td>DiffusionGemma 发布</td><td>扩散模型文本生成新范式</td><td>VentureBeat</td></tr>
+<tr><td class="date">06-12</td><td class="field">多模态</td><td></td><td></td><td>InterleaveThinker 视觉推理</td><td>边想边做新 SOTA</td><td>arXiv</td></tr>
+<tr class="date-group"><td colspan="7">2026-06-11 · 33条</td></tr>
+<tr><td class="date">06-11</td><td class="field">大模型</td><td class="company">OpenAI</td><td>Sam Altman</td><td>GPT-5.5 击败 Claude Fable 5</td><td>Agent 场景指令遵循领先</td><td>VentureBeat</td></tr>
+<tr><td class="date">06-11</td><td class="field">Agent</td><td></td><td></td><td>PROJECTMEM 记忆层架构</td><td>跨会话记忆持久化</td><td>arXiv</td></tr>
+<tr><td class="date">06-11</td><td class="field">具身智能</td><td></td><td></td><td>UniIntervene 强化学习</td><td>减少现实训练次数</td><td>arXiv</td></tr>
+<tr><td class="date">06-11</td><td class="field">法律</td><td class="company">Anthropic</td><td></td><td>FAA 式监管呼吁</td><td>合规策略成核心竞争力</td><td>VentureBeat</td></tr>
+<tr class="date-group"><td colspan="7">2026-06-10 · 14条</td></tr>
+<tr><td class="date">06-10</td><td class="field">大模型</td><td class="company">智谱AI</td><td></td><td>GLM-4.7 开源第一</td><td>国产模型对标国际</td><td>智谱AI</td></tr>
+<tr><td class="date">06-10</td><td class="field">具身智能</td><td class="company">优必选</td><td></td><td>营收增长 2203.7%</td><td>商业化从实验室走向规模</td><td>机器之心</td></tr>
+<tr><td class="date">06-10</td><td class="field">Agent</td><td class="company">Meta</td><td>Zuckerberg</td><td>收购 Manus</td><td>中美脱钩蔓延至应用层</td><td>钛媒体</td></tr>
+</tbody>
+</table>
+</div>
+
+</body>
+</html>

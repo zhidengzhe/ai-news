@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>移动端预览</title>
+<style>
+  :root { --bg:#0d0b0b; --text:#e0dcd5; --muted:#706b65; --accent:#ff8a5f; --border:#252220; --card:#151313; }
+  * { margin:0;padding:0;box-sizing:border-box; }
+  body {
+    background:var(--bg); color:var(--text);
+    font-family:'SF Mono','Cascadia Code','Consolas',monospace;
+    font-size:14px; line-height:1.6;
+    padding:16px;
+  }
+  header { text-align:center; padding:28px 0 20px; border-bottom:1px solid var(--border); margin-bottom:16px; }
+  header h1 { font-size:1.4rem; color:var(--accent); letter-spacing:4px; font-family:-apple-system,'PingFang SC',sans-serif; }
+  .filters { display:flex; flex-direction:column; gap:8px; margin-bottom:16px; }
+  .filters select, .filters input {
+    background:var(--card); color:var(--text); border:none; padding:10px 12px;
+    font-family:inherit; font-size:13px; width:100%;
+  }
+  .filters select:focus, .filters input:focus { outline:none; border-bottom:1px solid var(--accent); }
+  .date-group { color:var(--accent); font-size:13px; padding:16px 0 8px; border-bottom:1px solid var(--accent); margin-bottom:4px; }
+  .card {
+    background:var(--card); border:1px solid var(--border);
+    padding:14px; margin-bottom:10px;
+  }
+  .card .meta { display:flex; gap:10px; margin-bottom:8px; font-size:12px; flex-wrap:wrap; }
+  .card .date { color:var(--accent); }
+  .card .field { color:#b8a07a; }
+  .card .company { color:#7ab8a0; }
+  .card .person { color:#a07ab8; }
+  .card .content { margin-bottom:8px; line-height:1.5; }
+  .card .impact { color:var(--accent); font-size:12px; margin-bottom:4px; }
+  .card .source { color:var(--muted); font-size:11px; font-style:italic; }
+</style>
+</head>
+<body>
+<header><h1>AI 改变未来</h1></header>
+<div class="filters">
+  <select><option>全部领域</option><option>大模型</option><option>Agent</option></select>
+  <select><option>全部公司</option><option>OpenAI</option><option>DeepSeek</option></select>
+  <input type="text" placeholder="搜索关键词">
+</div>
+<div class="date-group">2026-06-11 · 28条</div>
+<div class="card">
+  <div class="meta"><span class="date">06-11</span><span class="field">大模型</span><span class="company">Anthropic</span></div>
+  <div class="content">Claude Fable 5 正式发布，是 Anthropic 迄今最强大的公开可用模型，定价仅为 Mythos Preview 的一半</div>
+  <div class="impact">大幅降低企业接入成本，加速大模型在各行业的落地应用</div>
+  <div class="source">VentureBeat</div>
+</div>
+<div class="card">
+  <div class="meta"><span class="date">06-11</span><span class="field">Agent</span><span class="company">Microsoft</span></div>
+  <div class="content">微软发布 agent-lightning：专为AI Agent打造的「绝对训练器」，首次将Agent训练系统化</div>
+  <div class="impact">填补Agent训练工具链空白，加速Agent从手工调参向工业化训练转型</div>
+  <div class="source">GitHub</div>
+</div>
+<div class="card">
+  <div class="meta"><span class="date">06-11</span><span class="field">芯片</span><span class="company">NVIDIA</span><span class="person">黄仁勋</span></div>
+  <div class="content">黄仁勋 Computex 发布 6 款新芯片 + Nemotron 3 Ultra(550B)</div>
+  <div class="impact">推理侧布局加速，芯片+模型双线推进将重塑开源生态</div>
+  <div class="source">NVIDIA</div>
+</div>
+<div class="card">
+  <div class="meta"><span class="date">06-11</span><span class="field">具身智能</span><span class="person">Deepak Pathak</span></div>
+  <div class="content">FACTR 2：商用机械臂通过学习外力感知显著提升策略学习效果</div>
+  <div class="impact">使普通工业机器人获得触觉，降低具身智能对昂贵硬件的依赖</div>
+  <div class="source">arXiv:2606.12406</div>
+</div>
+</body>
+</html>
